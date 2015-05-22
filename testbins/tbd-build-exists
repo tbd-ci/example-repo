@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+
+export rev=$(git rev-parse head)
+export GIT_INDEX_FILE=$( mktemp -t tmp_git_index )
+worktree=$( mktemp -d -t tmp_git_tree )
+git_dir=$( pwd )/.git
+
+git read-tree refs/tbd/all-build-results
+
+git ls-files --stage --directory $rev/$1 | cut -f 2 | tr '/' ' ' | cut -d ' ' -f 3-5

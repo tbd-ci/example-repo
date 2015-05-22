@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+while read line
+do
+  for f in $( cat "$ci_dir/$line/dependencies" )
+  do
+    git ls refs/tbd/all-build-results
+
+
+      # now=$(date +%Y%m%d%H%M%S)
+      # host=$(hostname)
+      # store_prefix="$rev/$target/$now/$host"
+      # tbd-run "$target_dir/run" --store-prefix "$store_prefix"
+
+
+  done
+done < "${1:-/dev/stdin}"
